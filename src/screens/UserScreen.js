@@ -1,40 +1,93 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { connect } from "react-redux";
+import ava from "../images/ava.jpg";
+import img1 from "../images/img1.jpg";
+import img2 from "../images/img2.jpg";
+import { Thumbnail, DeckSwiper, Card, CardItem } from "native-base";
+
+const cards = [
+  {
+    image: require("../images/img1.jpg"),
+  },
+  {
+    image: require("../images/img2.jpg"),
+  },
+];
 
 class UserScreen extends React.Component {
   render() {
-    const {usersData} = this.props;
-    console.log(usersData);
+    const { usersData } = this.props;
     const user = usersData[this.props.route.params.id];
-    console.log(user);
     return (
-       <View  key={user.id} style={styles.container} >
-         <Text>Имя : {user.name}</Text>
-         <Text>Профиль : {user.profile}</Text>
-       </View>
+      <View key={user.id} style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.gallery}>
+            <DeckSwiper
+              dataSource={cards}
+              renderItem={(item) => (
+                <Image style={{ height: 240, flex: 1 }} source={item.image} />
+              )}
+            />
+          </View>
+          <View style={styles.ava}>
+            <Thumbnail source={{ uri: ava }} />
+            <View style={{ flexDirection: "column" }}>
+              <Text>Имя : {user.name}</Text>
+              <Text note>Профиль : {user.profile}</Text>
+            </View>
+          </View>
+          <View style={styles.content}>
+            <Text>Content</Text>
+          </View>
+          <View style={styles.grafik}>
+            <Text>Grafik</Text>
+          </View>
+
+          <View style={styles.feedback}>
+            <Text>Feedback</Text>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+    backgroundColor: "white",
+  },
+  scrollView: {
+    backgroundColor: "pink",
+  },
+  ava: {
+    height: 80,
+    justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "blue"
-  },
-  flatList: {
-    width: "100%",
-    height: "100%",
-  },
-  viewRow: {
     flexDirection: "row",
+    backgroundColor: "#1F22D7",
   },
-  image: {
-    width: "50%",
-    resizeMode: "cover",
+  content: {
+    height:240,
+    flexDirection: "row",
+    backgroundColor: "#112299",
+  },
+  grafik: {
+    height: 80,
+    flexDirection: "row",
+    backgroundColor: "#F021FF",
+  },
+  gallery: {
+    height: 240,
+    backgroundColor: "grey",
+  },
+  feedback: {
+    height: 80,
+    flexDirection: "row",
+    backgroundColor: "#1FFf77",
   },
 });
-
 
 function mapStateToProps(state) {
   return {

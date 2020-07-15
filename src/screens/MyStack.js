@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 
 function MainStackScreen() {
   return (
-    <MainStack.Navigator initialRouteName="Login">
+    <MainStack.Navigator initialRouteName="Main" >
       <MainStack.Screen name="Login" component={LoginScreen} />
       <MainStack.Screen name="Main" component={MainScreen} />
       <MainStack.Screen name="User" component={UserScreen} />
@@ -61,7 +61,6 @@ const icons = {
 export default function MyStack() {
   return (
     <NavigationContainer>
-      <AppHeader />
       <Tab.Navigator
         initialRouteName="MainStack"
         initialRoute={{ statusBarHidden: false }}
@@ -86,4 +85,5 @@ export default function MyStack() {
       </Tab.Navigator>
     </NavigationContainer>
   );
+  
 }
