@@ -6,6 +6,7 @@ export function replace(filteredData,searchValue) {
     payload: {
       filteredData,
       searchValue,
+      
     }  
   };  
 } 

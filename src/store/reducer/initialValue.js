@@ -2,7 +2,13 @@ export const initialState = {
   searchValue: "",
   filteredData:[],
   usersData: [
-    { id: 0, name: "Вася", profile: "Маникюр", master:true},
+    { 
+      id: 0, 
+      name: "Вася", 
+      profile: "Маникюр",
+      gallery:["ava.jpg","ava.jpg","ava.jpg","ava.jpg","ava.jpg"],
+      master:true
+    },
     { id: 1, name: "Петя", profile: "Маникюр", master:true},
     { id: 2, name: "Женя", profile: "Маникюр", master:false},
     { id: 3, name: "Антон", profile: "Маникюр", master:true},

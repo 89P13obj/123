@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import ava from "../images/ava.jpg";
 import img1 from "../images/img1.jpg";
 import img2 from "../images/img2.jpg";
-import { Thumbnail, DeckSwiper, Card, CardItem } from "native-base";
+import { Thumbnail, DeckSwiper, Card, CardItem, Button } from "native-base";
+import ScheduleScreen from "./ScheduleScreen";
 
 const cards = [
   {
@@ -15,8 +16,8 @@ const cards = [
   },
 ];
 
-class UserScreen extends React.Component {
-  render() {
+class UserScreen extends React.Component {  
+  render() {    
     const { usersData } = this.props;
     const user = usersData[this.props.route.params.id];
     return (
@@ -48,6 +49,13 @@ class UserScreen extends React.Component {
             <Text>Feedback</Text>
           </View>
         </ScrollView>
+        
+        <View style={{height:40, flexDirection:"row"}}>
+        <Button style={{flex:0.5}}    onPress={() => this.props.navigation.navigate("Schedule")}    
+>
+          <Text>Schedule</Text>
+        </Button>
+        </View>
       </View>
     );
   }
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1F22D7",
   },
   content: {
-    height:240,
+    height:400,
     flexDirection: "row",
     backgroundColor: "#112299",
   },
