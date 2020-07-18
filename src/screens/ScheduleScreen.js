@@ -7,7 +7,7 @@ function ScheduleScreen(props) {
     return (
       <View style={{  flex:1 }}>
         <Text>ScheduleScreen!</Text>
-        <Button style={{flex:0.5}}    onPress={() => props.navigation.navigate("User")}    
+        <Button onPress={() => props.navigation.navigate("User")}    
 >
           <Text>Back</Text>
         </Button>

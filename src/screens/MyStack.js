@@ -24,28 +24,30 @@ const Tab2 = createBottomTabNavigator();
 
 function MainStackScreen() {
   return (
-    <MainStack.Navigator initialRouteName="Main">
-      <MainStack.Screen name="Main" component={MainScreen} />
+    <MainStack.Navigator initialRouteName="Main" headerMode="none">
+      <MainStack.Screen name="Main"  component={MainScreen} />
+      <MainStack.Screen name="User" component={UserScreen} />
+      <MainStack.Screen name="Schedule" component={ScheduleScreen} />      
     </MainStack.Navigator>
   );
 }
 function FavoriteStackScreen() {
   return (
-    <FavoriteStack.Navigator initialRouteName="Favorite">
+    <FavoriteStack.Navigator initialRouteName="Favorite" headerMode="none">
       <FavoriteStack.Screen name="Favorite" component={FavoriteScreen} />
     </FavoriteStack.Navigator>
   );
 }
 function DialogStackScreen() {
   return (
-    <DialogStack.Navigator initialRouteName="Dialog">
+    <DialogStack.Navigator initialRouteName="Dialog" headerMode="none">
       <DialogStack.Screen name="Dialog" component={DialogScreen} />
     </DialogStack.Navigator>
   );
 }
 function ProfileStackScreen() {
   return (
-    <ProfileStack.Navigator initialRouteName="Profile">
+    <ProfileStack.Navigator initialRouteName="Profile" headerMode="none">
       <ProfileStack.Screen name="Profile" component={ProfileScreen} />
     </ProfileStack.Navigator>
   );
@@ -58,9 +60,11 @@ const icons = {
   ProfileStack: "player-settings",
 };
 
-function MainTabs() {
+
+export default function MyStack() {
   return (
-    <Tab.Navigator headerMode="none"
+    <NavigationContainer>
+    <Tab.Navigator headerMode="none" 
       initialRouteName="MainStack"
       initialRoute={{ statusBarHidden: false }}
       screenOptions={({ route }) => ({
@@ -81,6 +85,7 @@ function MainTabs() {
       <Tab.Screen name="DialogStack" component={DialogStackScreen} />
       <Tab.Screen name="ProfileStack" component={ProfileStackScreen} />
     </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -93,15 +98,3 @@ function MainTabs() {
 //     </Tab2.Navigator>
 //   );
 // }
-const MyNavStack = createStackNavigator();
-export default function MyStack() {
-  return (
-    <NavigationContainer>
-      <MyNavStack.Navigator mode="modal">
-        <MyNavStack.Screen name="Main" component={MainTabs} />
-        <MyNavStack.Screen name="User" component={UserScreen} />
-        <MyNavStack.Screen name="Schedule" component={ScheduleScreen} />
-      </MyNavStack.Navigator>
-    </NavigationContainer>
-  );
-}

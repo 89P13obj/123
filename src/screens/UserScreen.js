@@ -17,9 +17,10 @@ const cards = [
 ];
 
 class UserScreen extends React.Component {  
-  render() {    
+  render() {  
     const { usersData } = this.props;
     const user = usersData[this.props.route.params.id];
+    
     return (
       <View key={user.id} style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -41,17 +42,10 @@ class UserScreen extends React.Component {
           <View style={styles.content}>
             <Text>Content</Text>
           </View>
-          <View style={styles.grafik}>
-            <Text>Grafik</Text>
-          </View>
-
-          <View style={styles.feedback}>
-            <Text>Feedback</Text>
-          </View>
         </ScrollView>
         
         <View style={{height:40, flexDirection:"row"}}>
-        <Button style={{flex:0.5}}    onPress={() => this.props.navigation.navigate("Schedule")}    
+        <Button rounded style={{flex:1, marginBottom:100, justifyContent:"center", backgroundColor:"red"}}    onPress={() => this.props.navigation.navigate("Schedule")}    
 >
           <Text>Schedule</Text>
         </Button>
@@ -67,33 +61,22 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   scrollView: {
-    backgroundColor: "pink",
+    backgroundColor: "#DCDCDC",
   },
   ava: {
     height: 80,
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#1F22D7",
+    borderBottomWidth: 2,
   },
   content: {
     height:400,
     flexDirection: "row",
-    backgroundColor: "#112299",
-  },
-  grafik: {
-    height: 80,
-    flexDirection: "row",
-    backgroundColor: "#F021FF",
   },
   gallery: {
     height: 240,
-    backgroundColor: "grey",
-  },
-  feedback: {
-    height: 80,
-    flexDirection: "row",
-    backgroundColor: "#1FFf77",
+    backgroundColor: "#DCDCDC",
   },
 });
 
