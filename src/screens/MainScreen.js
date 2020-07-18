@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux";
 import { ListItem, Left, Body, Thumbnail, List, View, Right } from "native-base";
 import ava from "../images/ava.jpg";
+import AppHeader from "../components/AppHeader";
 
 class MainScreen extends React.Component {
   renderItem = ({ item }) => (
@@ -37,16 +38,17 @@ class MainScreen extends React.Component {
   keyExtractor = (item) => item.id;
 
   render() {
-    const { usersData } = this.props;
+    const { usersData, filteredData } = this.props;
     return (
-      <List style={styles.container}>
+      <View style={styles.container}>
+        <AppHeader/>       
         <FlatList
         className="Flat"
-          data={usersData}
+          data={filteredData}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
-        />
-      </List>
+        />      
+      </View>
     );
   }
 }
@@ -54,6 +56,7 @@ class MainScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f2f3f3",
   },
   listItemLeft: {
     flex: 0.2,    
@@ -69,6 +72,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     usersData: state.usersData,
+    filteredData: state.filteredData,
   };
 }
 

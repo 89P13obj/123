@@ -6,6 +6,7 @@ export const initialState = {
       id: 0, 
       name: "Вася", 
       profile: "Маникюр",
+      addressCity: "Zhelezonogorsk",
       gallery:["ava.jpg","ava.jpg","ava.jpg","ava.jpg","ava.jpg"],
       master:true
     },
@@ -18,8 +19,5 @@ export const initialState = {
     { id: 7, name: "Дима", profile: "Маникюр", master:true},
     { id: 8, name: "Владимир", profile: "Маникюр", master:true},
   ],
-  isLogged: false,
-  login: '',
-  password: '',
-  
+
 };

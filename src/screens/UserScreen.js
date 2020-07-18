@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableHighlight } from "react-native";
 import { connect } from "react-redux";
 import ava from "../images/ava.jpg";
 import img1 from "../images/img1.jpg";
@@ -44,12 +44,15 @@ class UserScreen extends React.Component {
           </View>
         </ScrollView>
         
-        <View style={{height:40, flexDirection:"row"}}>
-        <Button rounded style={{flex:1, marginBottom:100, justifyContent:"center", backgroundColor:"red"}}    onPress={() => this.props.navigation.navigate("Schedule")}    
->
-          <Text>Schedule</Text>
-        </Button>
-        </View>
+        
+        <TouchableHighlight            
+          style={styles.button} 
+          onPress={() => this.props.navigation.navigate("Schedule")}
+          underlayColor='#f2f3f3'
+        >
+          <Text style={styles.text}>Schedule</Text>
+        </TouchableHighlight>
+       
       </View>
     );
   }
@@ -60,8 +63,19 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
   },
+  text: {
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "purple",
+    borderColor: "black",
+    borderWidth:1,
+    minHeight:40,
+    flex:0.5,
+    justifyContent: "center", 
+  },
   scrollView: {
-    backgroundColor: "#DCDCDC",
+    backgroundColor: "#f2f3f3",
   },
   ava: {
     height: 80,
@@ -76,7 +90,7 @@ const styles = StyleSheet.create({
   },
   gallery: {
     height: 240,
-    backgroundColor: "#DCDCDC",
+    backgroundColor: "#f2f3f3",
   },
 });
 

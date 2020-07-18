@@ -76,8 +76,11 @@ export default function MyStack() {
         },
       })}
       tabBarOptions={{
+
         activeTintColor: "purple",
-        inactiveTintColor: "gray",
+        inactiveTintColor: "black",
+        activeBackgroundColor: "#f2f3f3",
+        inactiveBackgroundColor: "#f2f3f3",
       }}
     >
       <Tab.Screen name="MainStack" component={MainStackScreen} />
