@@ -24,7 +24,7 @@ const Tab2 = createBottomTabNavigator();
 
 function MainStackScreen() {
   return (
-    <MainStack.Navigator initialRouteName="Main" headerMode="none">
+    <MainStack.Navigator initialRouteName="Main">
       <MainStack.Screen name="Main"  component={MainScreen} />
       <MainStack.Screen name="User" component={UserScreen} />
       <MainStack.Screen name="Schedule" component={ScheduleScreen} />      
@@ -55,7 +55,7 @@ function ProfileStackScreen() {
 
 const icons = {
   MainStack: "home",
-  FavoriteStack: "favorite",
+  FavoriteStack: "star",
   DialogStack: "hipchat",
   ProfileStack: "player-settings",
 };
@@ -71,7 +71,6 @@ export default function MyStack() {
         tabBarIcon: ({ focused, color }) => {
           let iconName = icons[route.name];
           let sizeIcon = focused ? 30 : 20;
-
           return <Fontisto name={iconName} size={sizeIcon} color={color} />;
         },
       })}

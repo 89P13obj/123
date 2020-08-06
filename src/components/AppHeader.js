@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, StatusBarIOS, StatusBar } from "react-native";
 import { replace, reload } from "../store/actions/action";
 import { connect } from "react-redux";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Header, Text, Item, Input, View } from "native-base";
 
 class AppHeader extends React.Component {
@@ -12,7 +12,6 @@ class AppHeader extends React.Component {
 
     const { onReplace,usersData, searchValue } = this.props;
     onReplace && onReplace(usersData,searchValue);
-
   }
 
   handleChange = textValue => {
@@ -23,9 +22,9 @@ class AppHeader extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header searchBar rounded  transparent style={styles.header}>
+        <Header  searchBar rounded  transparent style={styles.header}>
           <Item>
-            <Ionicons name="ios-search" size={30} color="black" />
+            <Fontisto name="search" size={24} color="black" />
             <Input
               placeholder="Search"
               name="search"

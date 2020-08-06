@@ -12,6 +12,13 @@ export default function reducer(state = initialState, { type, payload }) {
 
       };
     }
+    case types.FAVORITE: {
+      return {
+        usersData: payload.usersData,
+        searchValue: state.searchValue
+
+      };
+    }
     default:
       return state;
   }

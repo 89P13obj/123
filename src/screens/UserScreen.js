@@ -42,6 +42,10 @@ class UserScreen extends React.Component {
           <View style={styles.content}>
             <Text>Content</Text>
           </View>
+          <View style={styles.time}>
+            <Text>Free time: 20.07 18:00</Text>
+          </View>
+
         </ScrollView>
         
         
@@ -82,10 +86,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
+    borderTopWidth:1,
   },
   content: {
     height:400,
+    flexDirection: "row",
+    borderBottomWidth: 1,
+  },
+  time: {
+
+    height:40,
     flexDirection: "row",
   },
   gallery: {

@@ -7,43 +7,44 @@ import {
   Image,
 } from "react-native";
 import { connect } from "react-redux";
-import { ListItem, Left, Body, Thumbnail, List, View, Right } from "native-base";
+import { ListItem, Left, Body, Thumbnail, List, View, Right, Button } from "native-base";
 import ava from "../images/ava.jpg";
 import AppHeader from "../components/AppHeader";
+import { Fontisto } from "@expo/vector-icons";
+import { favorites } from "../store/actions/action";
 
 class MainScreen extends React.Component {
+  handleChange = id => {
+    const { onFavorite,usersData } = this.props;
+    onFavorite && onFavorite(usersData,id);
+  };
+
   renderItem = ({ item }) => (
     <ListItem
       key={item.id}
-      roundAvatar
-      className={"ListItem"} 
-      onPress={() => this.props.navigation.navigate("User", { id: item.id })}    
+      roundAvatar       
     >
       <Left style={styles.listItemLeft}>
         <Thumbnail source={{ uri: ava }} />
       </Left>
       <Body style={styles.listItemBody}>
-        <Text>{item.name}</Text>
+        <Text onPress={() => this.props.navigation.navigate("User", { id: item.id })} >{item.name}</Text>
         <Text note>{item.profile}</Text>
       </Body>
       <Right style={styles.listItemRight}>
-        <Text note>
-          123
-        </Text>
+        <Fontisto name="star" size={24} color ={(item.favorite == true) ? 'purple' : 'black'} onPress={() =>this.handleChange(item.id)}/>
       </Right>
     </ListItem>
-    // </TouchableOpacity>
   );
 
   keyExtractor = (item) => item.id;
 
   render() {
-    const { usersData, filteredData } = this.props;
+    const { filteredData } = this.props;
     return (
       <View style={styles.container}>
         <AppHeader/>       
         <FlatList
-        className="Flat"
           data={filteredData}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
@@ -77,7 +78,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    onFavorite: (usersData,id) => dispatch(favorites(usersData,id))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
