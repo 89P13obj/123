@@ -36,7 +36,7 @@ class UserScreen extends React.Component {
             <Thumbnail source={{ uri: ava }} />
             <View style={{ flexDirection: "column" }}>
               <Text>Имя : {user.name}</Text>
-              <Text note>Профиль : {user.profile}</Text>
+              <Text note="true">Профиль : {user.profile}</Text>
             </View>
           </View>
           <View style={styles.content}>

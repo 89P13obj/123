@@ -19,14 +19,14 @@ class ScheduleScreen extends Component {
       <Left>
         <View>
           <Text>
-            {item[0]}
+            {item.timeSpan}
           </Text>
         </View>
       </Left>
       <Right >
         <View>
-          <Text style={{color : item[1]=='busy' ? 'red' : 'green'}}>
-            {item[1]}
+          <Text style={{color : item.isBusy == 'busy' ? 'red' : 'green'}}>
+            {item.isBusy}
           </Text>
         </View>
       </Right>
@@ -36,16 +36,16 @@ class ScheduleScreen extends Component {
   keyExtractor = (item) => item.id;
 
   render() {const data = [
-      ['10:00-11:00','busy'],
-      ['11:00-12:00','busy'],
-      ['12:00-13:00','busy'],
-      ['13:00-14:00','free'],
-      ['14:00-15:00','free'],
-      ['15:00-16:00','busy'],
-      ['16:00-17:00','busy'],
-      ['17:00-18:00','busy'],
-      ['18:00-19:00','busy'],
-    ];
+    {id:0, timeSpan : '10:00-11:00', isBusy : 'busy'},
+    {id:0, timeSpan : '11:00-12:00', isBusy : 'busy'},
+    {id:0, timeSpan : '12:00-13:00', isBusy : 'busy'},
+    {id:0, timeSpan : '13:00-14:00', isBusy : 'free'},
+    {id:0, timeSpan : '14:00-15:00', isBusy : 'busy'},
+    {id:0, timeSpan : '15:00-16:00', isBusy : 'busy'},
+    {id:0, timeSpan : '16:00-17:00', isBusy : 'free'},
+    {id:0, timeSpan : '17:00-18:00', isBusy : 'busy'},
+    {id:0, timeSpan : '18:00-19:00', isBusy : 'busy'},
+  ];
     return (
       <View style={styles.container}>
         <CalendarPicker

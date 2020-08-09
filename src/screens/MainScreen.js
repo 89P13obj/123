@@ -11,12 +11,13 @@ import { ListItem, Left, Body, Thumbnail, List, View, Right, Button } from "nati
 import ava from "../images/ava.jpg";
 import AppHeader from "../components/AppHeader";
 import { Fontisto } from "@expo/vector-icons";
-import { favorites } from "../store/actions/action";
+import { favorites, markFavorites } from "../store/actions/action";
+import filteredData from "../components/filteredData";
 
 class MainScreen extends React.Component {
   handleChange = id => {
-    const { onFavorite,usersData } = this.props;
-    onFavorite && onFavorite(usersData,id);
+    const { onFavorite } = this.props;
+    onFavorite && onFavorite(id);
   };
 
   renderItem = ({ item }) => (
@@ -29,7 +30,7 @@ class MainScreen extends React.Component {
       </Left>
       <Body style={styles.listItemBody}>
         <Text onPress={() => this.props.navigation.navigate("User", { id: item.id })} >{item.name}</Text>
-        <Text note>{item.profile}</Text>
+        <Text note="true">{item.profile}</Text>
       </Body>
       <Right style={styles.listItemRight}>
         <Fontisto name="star" size={24} color ={(item.favorite == true) ? 'purple' : 'black'} onPress={() =>this.handleChange(item.id)}/>
@@ -37,15 +38,15 @@ class MainScreen extends React.Component {
     </ListItem>
   );
 
-  keyExtractor = (item) => item.id;
+  keyExtractor = (item, index) => index.toString();
 
   render() {
-    const { filteredData } = this.props;
+    const { usersData,searchValue,onFiltered } = this.props;
     return (
       <View style={styles.container}>
         <AppHeader/>       
         <FlatList
-          data={filteredData}
+          data={onFiltered(usersData,searchValue)}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
         />      
@@ -73,13 +74,14 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     usersData: state.usersData,
-    filteredData: state.filteredData,
+    searchValue: state.searchValue,
+    onFiltered: filteredData(state.usersData,state.searchValue)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onFavorite: (usersData,id) => dispatch(favorites(usersData,id))
+    onFavorite: (id) => dispatch(markFavorites(id)),
   };
 }
 

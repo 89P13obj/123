@@ -4,22 +4,24 @@ import { replace, reload } from "../store/actions/action";
 import { connect } from "react-redux";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Header, Text, Item, Input, View } from "native-base";
+import filteredData from "../components/filteredData";
 
 class AppHeader extends React.Component {
   componentDidMount() {
     StatusBar.setBarStyle("light-content", true);
     StatusBar.setBackgroundColor("#800080");
 
-    const { onReplace,usersData, searchValue } = this.props;
-    onReplace && onReplace(usersData,searchValue);
+    const { onReplace, searchValue } = this.props;
+    onReplace && onReplace(searchValue);
   }
 
   handleChange = textValue => {
-    const { onReplace,usersData } = this.props;
-    onReplace && onReplace(usersData,textValue);
+    const { onReplace } = this.props;
+    onReplace && onReplace(textValue);
   };
 
   render() {
+    const {searchValue} = this.props;
     return (
       <View style={styles.container}>
         <Header  searchBar rounded  transparent style={styles.header}>
@@ -52,13 +54,12 @@ function mapStateToProps(state) {
   return {
     searchValue: state.searchValue,
     usersData: state.usersData,
-    filteredData: state.filteredData,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onReplace: (usersData,searchValue) => dispatch(reload(usersData,searchValue))
+    onReplace: (searchValue) => dispatch(replace(searchValue))
   };
 }
 

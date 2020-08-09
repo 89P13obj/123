@@ -7,17 +7,14 @@ export default function reducer(state = initialState, { type, payload }) {
     case types.REPLACE: {
       return {
         searchValue: payload.searchValue,
-        filteredData: payload.filteredData,
         usersData: state.usersData,
-
       };
     }
-    case types.FAVORITE: {
+    case types.MARK_FAVORITE: {
       return {
-        usersData: payload.usersData,
-        searchValue: state.searchValue
-
-      };
+        ...state,
+        usersData: state.usersData.map((data) => data.id === payload.id ? {...data, favorite: !data.favorite} : data),
+    };
     }
     default:
       return state;

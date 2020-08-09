@@ -1,6 +1,5 @@
 export const initialState = {
   searchValue: "",
-  filteredData:[],
   usersData: [
     { 
       id: 0, 
@@ -8,7 +7,7 @@ export const initialState = {
       profile: "Маникюр",
       addressCity: "Zhelezonogorsk",
       gallery:["ava.jpg","ava.jpg","ava.jpg","ava.jpg","ava.jpg"],
-      master:true, 
+      master:true,
       favorite:false
     },
     { id: 1, name: "Петя", profile: "Маникюр", master:true, favorite:false},
